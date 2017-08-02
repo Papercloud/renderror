@@ -138,7 +138,7 @@ This would return the following JSON if the user failed validation
 
 #### `render_invalid_authentication`
 
-This addon hooks into Devise's error handling and helper methods to render unauthorized errors compliant with the JSON:Api format.
+This addon can be used to render errors when a user fails signin validation (either from Devise or a custom signin method)
 
 ```ruby 
 def create
@@ -155,7 +155,7 @@ end
 
 #### `render_reform_unprocessable(form)`
 
-Renderror also works with the [Reform](https://github.com/trailblazer/reform) gem from Trailblaizer.
+Renderror also works with the [Reform](https://github.com/trailblazer/reform) gem from Trailblazer.
 Similar to `render_unprocessable`, however takes an instance of a `Reform::Form` and renders the errors from there:
 
 ```ruby
@@ -179,7 +179,7 @@ After running the `install` command you can simply open the `renderror.en.yml` f
 If you with to make your own errors, you can do so by simply inheriting from the `Renderror::BaseError` class.
 
 ```ruby
-class ImATeapot < BaseError
+class ImATeapot < Renderror::BaseError
 
   def status
     '418'
