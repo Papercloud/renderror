@@ -12,7 +12,8 @@ module Renderror
       include RenderInvalidAuthentication
 
       def render_errors(errors)
-        render json: { errors: errors.map(&:to_json) }, status: errors[0].status
+        render json: { errors: Array(errors).map(&:to_json) },
+               status: Array(errors)[0].status
       end
     end
   end
