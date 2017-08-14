@@ -20,8 +20,7 @@ RSpec.describe Renderror::BadRequest do
       json = {
         'status' => '400',
         'title' => 'Bad Request',
-        'detail' => 'Bad Request',
-        'pointer' => nil
+        'detail' => 'Bad Request'
       }
 
       expect(subject.to_json).to eq json
@@ -45,8 +44,7 @@ RSpec.describe Renderror::BadRequest do
       json = {
         'status' => '400',
         'title' => 'Oops',
-        'detail' => 'Something\'s Not Right',
-        'pointer' => nil
+        'detail' => 'Something\'s Not Right'
       }
 
       expect(subject.to_json).to eq json

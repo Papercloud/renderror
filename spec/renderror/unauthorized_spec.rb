@@ -21,8 +21,7 @@ RSpec.describe Renderror::Unauthorized do
       json = {
         'status' => '401',
         'title' => 'Unauthorized',
-        'detail' => 'You need to sign in or sign up before continuing.',
-        'pointer' => nil
+        'detail' => 'You need to sign in or sign up before continuing.'
       }
 
       expect(subject.to_json).to eq json
@@ -46,8 +45,7 @@ RSpec.describe Renderror::Unauthorized do
       json = {
         'status' => '401',
         'title' => 'Oops',
-        'detail' => 'Something\'s Not Right',
-        'pointer' => nil
+        'detail' => 'Something\'s Not Right'
       }
 
       expect(subject.to_json).to eq json
