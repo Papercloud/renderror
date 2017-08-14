@@ -20,8 +20,7 @@ RSpec.describe Renderror::BaseError do
       json = {
         'status' => '400',
         'title' => 'Bad Request',
-        'detail' => 'Bad Request',
-        'pointer' => nil
+        'detail' => 'Bad Request'
       }
 
       expect(subject.to_json).to eq json
@@ -45,11 +44,28 @@ RSpec.describe Renderror::BaseError do
       json = {
         'status' => '400',
         'title' => 'Oops',
-        'detail' => 'Something\'s Not Right',
-        'pointer' => nil
+        'detail' => 'Something\'s Not Right'
       }
 
       expect(subject.to_json).to eq json
+    end
+  end
+
+  describe '#.to_json' do
+    let(:options) { {} }
+
+    subject { described_class.new(options).to_json }
+
+    it 'only renders present attributes' do
+      expect(subject.keys).to match_array %w[status title detail]
+    end
+
+    context 'when a pointer is present' do
+      before { options[:pointer] = 'pointer' }
+
+      it 'nests the pointer in a source object' do
+        expect(subject['source']['pointer']).to eq 'pointer'
+      end
     end
   end
 end

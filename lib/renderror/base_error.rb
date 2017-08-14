@@ -7,12 +7,12 @@ module Renderror
     end
 
     def to_json
-      {
-        'status' => status,
-        'title' => title,
-        'detail' => detail,
-        'pointer' => pointer
-      }
+      Hash.new.tap do |hash|
+        hash['status'] = status
+        hash['title'] = title
+        hash['detail'] = detail
+        hash['source'] = { 'pointer' => pointer } if pointer
+      end
     end
 
     def status
