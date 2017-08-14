@@ -21,8 +21,7 @@ RSpec.describe Renderror::NotFound do
       json = {
         'status' => '404',
         'title' => I18n.t(:"renderror.not_found.title"),
-        'detail' => I18n.t(:"renderror.not_found.detail"),
-        'pointer' => nil
+        'detail' => I18n.t(:"renderror.not_found.detail")
       }
 
       expect(subject.to_json).to eq json
@@ -46,8 +45,7 @@ RSpec.describe Renderror::NotFound do
       json = {
         'status' => '404',
         'title' => 'Oops',
-        'detail' => 'Something\'s Not Right',
-        'pointer' => nil
+        'detail' => 'Something\'s Not Right'
       }
 
       expect(subject.to_json).to eq json

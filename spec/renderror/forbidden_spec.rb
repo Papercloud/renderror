@@ -21,8 +21,7 @@ RSpec.describe Renderror::Forbidden do
       json = {
         'status' => '403',
         'title' => I18n.t(:"renderror.forbidden.title"),
-        'detail' => I18n.t(:"renderror.forbidden.detail"),
-        'pointer' => nil
+        'detail' => I18n.t(:"renderror.forbidden.detail")
       }
 
       expect(subject.to_json).to eq json
@@ -46,8 +45,7 @@ RSpec.describe Renderror::Forbidden do
       json = {
         'status' => '403',
         'title' => 'Oops',
-        'detail' => 'Something\'s Not Right',
-        'pointer' => nil
+        'detail' => 'Something\'s Not Right'
       }
 
       expect(subject.to_json).to eq json

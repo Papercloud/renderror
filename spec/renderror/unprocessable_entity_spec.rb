@@ -21,8 +21,7 @@ RSpec.describe Renderror::UnprocessableEntity do
       json = {
         'status' => '422',
         'title' => 'Unprocessable Entity',
-        'detail' => 'Unprocessable Entity',
-        'pointer' => nil
+        'detail' => 'Unprocessable Entity'
       }
 
       expect(subject.to_json).to eq json
@@ -46,8 +45,7 @@ RSpec.describe Renderror::UnprocessableEntity do
       json = {
         'status' => '422',
         'title' => 'Oops',
-        'detail' => 'Something\'s Not Right',
-        'pointer' => nil
+        'detail' => 'Something\'s Not Right'
       }
 
       expect(subject.to_json).to eq json
