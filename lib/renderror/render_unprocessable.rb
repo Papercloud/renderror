@@ -13,9 +13,14 @@ module Renderror
         resource.errors.map do |field, error|
           Renderror::UnprocessableEntity.new(
             detail: resource.errors.full_message(field, error),
-            pointer: "/data/attributes/#{field.to_s.dasherize}"
+            pointer: pointer_for(field)
           )
         end
+      end
+
+      def pointer_for(field)
+        return if field == :base
+        "/data/attributes/#{field.to_s.dasherize}"
       end
     end
   end
