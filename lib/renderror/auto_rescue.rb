@@ -3,11 +3,8 @@ module Renderror
     extend ActiveSupport::Concern
 
     PERMITTED_EXCEPTIONS = %i[
-      bad_request not_found invalid_document cancan
+      bad_request not_found invalid_document cancan conflict
     ].freeze
-
-    included do
-    end
 
     module ClassMethods
       def renderror_auto_rescue(*exceptions)
@@ -50,6 +47,12 @@ module Renderror
           render_errors(
             [Renderror::Forbidden.new(detail: exception.message)]
           )
+        end
+      end
+
+      def rescue_conflict
+        rescue_from Renderror::Conflict do |exception|
+          render_errors(exception)
         end
       end
     end

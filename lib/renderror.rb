@@ -1,6 +1,7 @@
 require 'active_support'
 require 'renderror/configuration'
 require 'renderror/auto_rescue'
+require 'renderror/validate'
 require 'renderror/renderer'
 
 require 'renderror/base_error'
@@ -20,6 +21,7 @@ end
 module ActionController
   class Base
     include Renderror::AutoRescue
+    include Renderror::Validate
     include Renderror::Renderer
   end
 end
