@@ -9,6 +9,7 @@ require 'renderror/unauthorized'
 require 'renderror/forbidden'
 require 'renderror/not_found'
 require 'renderror/unprocessable_entity'
+require 'renderror/conflict'
 
 module Renderror
   extend Configuration
