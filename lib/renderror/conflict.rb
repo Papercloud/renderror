@@ -5,11 +5,11 @@ module Renderror
     end
 
     def default_title
-      'Conflict'
+      I18n.t(:"renderror.conflict.title")
     end
 
     def default_detail
-      'Incorrect type specified'
+      I18n.t(:"renderror.conflict.detail")
     end
   end
 end
