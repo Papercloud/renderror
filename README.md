@@ -91,6 +91,51 @@ Ties into the [CanCanCan](https://github.com/CanCanCommunity/cancancan) gem to a
 }
 ```
 
+#### `:conflict`
+
+This ties into `renderror_validate` mentioned below, and allows auto rescuing from `Renderror::Conflict` errors, responding with a `Conflict` error
+
+```json
+{
+  "errors": [
+    {
+      "title": "Conflict",
+      "status": "409",
+      "detail": "Incorrect type specified"
+    }
+  ]
+}
+```
+
+## Renderror Validate
+
+As well as providing an auto rescue functionality, Renderror can also validate request params to ensure they have the correct type and id [as specified by JSON:Api](http://jsonapi.org/format/#crud-creating-responses-409). 
+
+You can enable this in a similar way to auto rescue:
+
+```ruby 
+class ApiController < ApplicationController
+  renderror_validate :jsonapi_type, :jsonapi_id
+end
+```
+
+This will enable automatic type validate for all `create` and `update` actions, as well as validating that the `id` matches the query param id for all `update` requests. If this validation fails a `Renderror::Conflict` will be raised, which you can auto rescue from (as mentioned above).
+
+### Validating Custom Actions
+
+Sometimes you may want to validate `jsonapi_type` or `jsonapi_id` for actions other than just create and update. If this is the case then you can simply pass them in as a before action and they will be handled the same way:
+
+```ruby 
+class UsersController < ApiController
+  before_action :validate_jsonapi_type, only: :change_status
+  before_action :validate_jsonapi_id,   only: :change_status
+
+  def change_status
+    # Your code here
+  end
+end
+```
+
 ## Additional Methods
 
 There is also a number of situations where Renderror can be triggered manually, such as when wanting to render model errors or invalid authentication errors. You can do this using the following methods.
