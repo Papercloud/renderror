@@ -20,3 +20,6 @@ en:
     unprocessable_entity:
       title: Unprocessable Entity
       detail: Unprocessable Entity
+    conflict:
+      title: Conflict
+      detail: Incorrect type specified
